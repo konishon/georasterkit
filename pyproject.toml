@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "georasterkit"
+version = "0.1.0"
+description = "A suite of utilities for slicing, masking, and merging overlapping GeoTIFF rasters."
+authors = ["Nishon <nishon@naxa.com.np>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/naxa-developers/georasterkit"
+repository = "https://github.com/naxa-developers/georasterkit"
+keywords = ["geotiff", "raster", "tiling", "gis", "mask", "merge", "overlap"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+rasterio = "^1.4.3"
+tqdm = "^4.67.1"
+matplotlib = "*"
+
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
