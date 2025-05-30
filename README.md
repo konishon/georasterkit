@@ -52,21 +52,40 @@ poetry shell
 ## Quick Start
 
 ```python
+import logging
+from pathlib import Path
 from georasterkit.tiff_extractor import TiffExtractor
 
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
+logger = logging.getLogger(__name__)
+
+base_dir = Path(__file__).parent.parent
+input_tiff = base_dir / "sample_data" / "1.tif"
+output_dir = base_dir / "tiles"
+
 extractor = TiffExtractor(
-    tiff_path="sample_data/1.tif",
-    tile_size=256,
-    overlap_percentage=10.0,
-    output_folder="tiles",
-    remove_folder_if_exist=True,
-    skip_if_output_exists=False,
+    tiff_path=input_tiff,
+    tile_size=(256, 256),          # width, height in pixels
+    overlap=(0.1, 0.1),            # 10% overlap x and y
+    output_folder=output_dir,
+    force=True,
+    workers=4,
     debug=True,
 )
 
 success = extractor.extract()
 if success:
-    print("Tiles generated in 'tiles/' folder.")
+    logger.info(
+        "Tiles written to '%s'. Grid preview (grid_preview.png) also generated.",
+        output_dir
+    )
+else:
+    logger.error("Tile extraction failed.")
+
+
 ```
 
 
