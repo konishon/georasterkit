@@ -15,7 +15,7 @@ def main():
 
     extractor = TiffExtractor(
         tiff_path=input_tiff,
-        tile_size=(256, 256),          # width, height in pixels
+        tile_size=(2048, 2048),          # width, height in pixels
         overlap=(0.1, 0.1),            # 10% overlap x and y
         output_folder=output_dir,
         force=True,
